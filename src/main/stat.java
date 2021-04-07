@@ -120,6 +120,21 @@ d=gson.fromJson(jsonString, coviddata.class);
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Previous data");
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					new prevstat();
+					}
+					catch(IOException aa){
+						System.out.println("exception");
+					}
+					catch(InterruptedException aa)
+					{
+						System.out.println("ee");
+					}
+			}
+		});
 		btnNewButton_1.setBounds(1107, 88, 172, 21);
 		frame.getContentPane().add(btnNewButton_1);
 		frame.setVisible(true);
