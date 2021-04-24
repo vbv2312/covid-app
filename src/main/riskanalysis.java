@@ -31,6 +31,7 @@ public class riskanalysis {
 	public riskanalysis() throws IOException,InterruptedException {
 		frame = new Myframe("risk");
 		
+		
 	}
 
 

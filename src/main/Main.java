@@ -136,6 +136,10 @@ list.setModel(dlm);
 list.addMouseListener(new MouseAdapter() {
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		if(e.getModifiers()==MouseEvent.BUTTON3_MASK)
+		{
+			System.out.println("gm");
+		}
 		try {
 			  Desktop desktop = java.awt.Desktop.getDesktop();
 			  if(list.getSelectedIndex()>=0)
