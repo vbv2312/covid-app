@@ -1,51 +1,15 @@
 =======================================================================
-JCalendar - v1.4 - 07/09/2011 - Readme File  - 
-=======================================================================
-
-(C) 1999 - 2011 Kai Toedter
-Released under GNU Lesser General Public License (see jcalendar-license.txt)
-kai@toedter.com
-www.toedter.com
-
-=======================================================================
-THANKS
-
-I would like to thank all the people who have sent e-mails and
-provided bug fixes and suggestions.
-
-=======================================================================
-UPDATES
-
-JCalendar is updated from time to time.
-Check the web site to stay informed about the updates:
-  http://www.toedter.com
-  https://max-server.myftp.org/trac/jcalendar
-
+Covid Application Track - a - cov 
 =======================================================================
 CONTENTS
-
-At the top level you find this file and a text version of the LGPL
-license. Please read the file "index.html" in the doc directory.
-
-This distribution contains several sub-directories.
-They are listed and described below:
-
-  bin\             contains a launch script for the JCalendar
-                   demo application for Windows 7/Vista/XP/2000/NT/98.
-  lib\             contains the software binaries (jar files) for
-                   JCalendar, JUnit and the JGoodies Looks Look & Feel.
-  doc              contains HTML documentation (start with index.html).
-  doc\api          contains JavaDoc documentation.
-  src\             contains all the sources to create a distribution.
-               
-
+The Application consists of various tools and measures to tell about the ongoing covid pandamic 
+at has all the links of advisories links of those can be viewed on your default web browser 
+along with the telephone numbers of helpline across all the states 
+along with list of positives , dead , victims stored across a database for tha past 1 year .
+It has a main page where all the news articles related to health issues and protective articles are mentioned those 
+can be saved or view through the default browser .
 =======================================================================
-Plastic Look & Feel
-
-Plastic Look & Feel is part of JGoodies Looks Look & Feel, (C) JGoodies,
-published under the BSD License.
-
-The official web site is:
-	http://www.jgoodies.com
-
+Tech Stack Used
 =======================================================================
+Various java libraries like (java.sql,java.swing,java.net,JDBC,JCalender etc)
+
