@@ -1,32 +1,20 @@
 package main;
-
 import java.awt.EventQueue;
+import java.sql.*;
 import javax.swing.*;
-import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JMenuBar;
-import javax.swing.JSeparator;
+
 import java.awt.Font;
-import javax.swing.JTextPane;
 import java.awt.*;
 import java.net.*;
 import com.google.gson.Gson;
 
 import java.awt.Color;
-import javax.swing.JTextArea;
 import java.awt.Label;
 import java.awt.List;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-
-import javax.swing.JList;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -34,11 +22,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.*;
 import com.google.gson.Gson;
-import javax.swing.JScrollPane;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.border.LineBorder;
-import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.CompoundBorder;
 import javax.imageio.*;
@@ -51,7 +38,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Main {
+	 // JDBC driver name and database URL
+	   static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
+	   static final String DB_URL = "jdbc:mysql://localhost/history";
 
+	   //  Database credentials
+	   static final String USER = "root";
+	   static final String PASS = "Vaibhav207*";
+	   Connection conn;
+	   PreparedStatement stmt;
 	public Myframe frame;
 	
 	JPanel panel = new JPanel();
@@ -105,6 +100,7 @@ public class Main {
 		frame.getContentPane().add(scrollPane);
 		
 		JList list = new JList();
+		list.addListSelectionListener(null); //editing disable
 		scrollPane.setViewportView(list);
 		
 		
@@ -121,12 +117,16 @@ data d=gson.fromJson(jsonString, data.class);
 
 	JLabel title[] = new JLabel[d.articles.size()];
 String add[]=new String[d.articles.size()];
+String tit[]=new String[d.articles.size()];
+String desc[]=new String[d.articles.size()];
 
 	DefaultListModel dlm=new DefaultListModel();
 	System.out.println("asd"+d.articles.size());
 for(int i=0;i<d.articles.size();i++)
 {
 	news item= d.articles.get(i);
+	tit[i]=item.title;
+	desc[i]=item.description;
 	title[i]=new JLabel(item.title+"---"+item.description);
 	add[i]=item.url;
 dlm.addElement(item.title + "------"+item.description);
@@ -136,11 +136,12 @@ list.setModel(dlm);
 list.addMouseListener(new MouseAdapter() {
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(e.getModifiers()==MouseEvent.BUTTON3_MASK)
-		{
-			System.out.println("gm");
-		}
-		try {
+	
+			 String[] buttons = { "Open in Browser", "SAVE" };
+			 int rc = JOptionPane.showOptionDialog(null, "What u wanna do", "Confirmation",
+				        JOptionPane.WARNING_MESSAGE, 0, null, buttons, buttons[1]);
+	if(rc==0)
+		{	try {
 			  Desktop desktop = java.awt.Desktop.getDesktop();
 			  if(list.getSelectedIndex()>=0)
 			  {
@@ -150,6 +151,33 @@ list.addMouseListener(new MouseAdapter() {
 			} catch (Exception f) {
 			  f.printStackTrace();
 			}
+		}
+	else
+	{
+		try {
+	      conn = DriverManager.getConnection(DB_URL, USER, PASS);
+		 String sql = "insert into history.favs values(?,?,?)";
+	      System.out.println("f");
+	      stmt = conn.prepareStatement(sql);
+	      stmt.setString(1,add[list.getSelectedIndex()]);
+	      stmt.setString(2,tit[list.getSelectedIndex()]);
+	      stmt.setString(3,desc[list.getSelectedIndex()]);
+	      stmt.executeUpdate();
+
+	}
+		catch(SQLException se){
+		      //Handle errors for JDBC
+		      se.printStackTrace();
+		   }
+	}
+	 
+	
+		
+		
+		
+		
+	
+	
 	}
 });
 	}

@@ -102,6 +102,21 @@ class Myframe extends JFrame
 	 mntmNewMenuItem_4 = new JMenuItem("Favorite news articles");
 	mntmNewMenuItem_4.setFont(new Font("Segoe UI", Font.PLAIN, 33));
 	mnNewMenu.add(mntmNewMenuItem_4);
+	mntmNewMenuItem_4.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			try {
+			new favorite();
+			}
+			catch(IOException aaa){
+				System.out.println("exception");
+			}
+			catch(InterruptedException aaa)
+			{
+				System.out.println("ee");
+			}
+		}
+	});
+	
      
   }
   public static void main ( String[] args ) throws  IOException,InterruptedException

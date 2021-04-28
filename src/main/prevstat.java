@@ -64,7 +64,7 @@ public class prevstat extends JDBCExample{
 		{
 		 
 try {
-    conn = DriverManager.getConnection(DB_URL, USER, PASS);
+    conn = DriverManager.getConnection(DB_URL, USER, PASS); //used from jdbc example
     ResultSet rst=null;
     
     // for giving entry of data for summary table
